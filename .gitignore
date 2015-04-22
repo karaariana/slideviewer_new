@@ -1,0 +1,4 @@
+slideviewer_xblock.egg-info
+*.log
+*.pyc
+*~

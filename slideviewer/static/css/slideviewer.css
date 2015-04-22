@@ -1,0 +1,9 @@
+/* CSS for SlideviewerXBlock */
+
+.slideviewer_block .count {
+    font-weight: bold;
+}
+
+.slideviewer_block p {
+    cursor: pointer;
+}
