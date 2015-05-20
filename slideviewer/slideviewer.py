@@ -156,4 +156,4 @@ class SlideviewerXBlock(XBlock, PublishEventMixin):  # pylint: disable=too-many-
         """
         A canned scenario for display in the workbench.
         """
-        return [("Slideshare scenario", "<vertical_demo><slideviewer/></vertical_demo>")]
+        return [("Slideshare scenario", "<slideviewer/>")]
