@@ -18,9 +18,12 @@ LOG = logging.getLogger(__name__)
 RESOURCE_LOADER = ResourceLoader(__name__)
 
 # Constants ###########################################################
+#DEFAULT_DOCUMENT_URL = (
+#    'https://docs.google.com/presentation/d/1x2ZuzqHsMoh1epK8VsGAlanSo7r9z55ualwQlj-ofBQ/embed?'
+#    'start=true&loop=true&delayms=10000'
+#)
 DEFAULT_DOCUMENT_URL = (
-    'https://docs.google.com/presentation/d/1x2ZuzqHsMoh1epK8VsGAlanSo7r9z55ualwQlj-ofBQ/embed?'
-    'start=true&loop=true&delayms=10000'
+    'https://www.slideshare.net/slideshow/embed_code/key/riK0ZKTSRpJtpA'
 )
 DEFAULT_EMBED_CODE = textwrap.dedent("""
     <iframe
