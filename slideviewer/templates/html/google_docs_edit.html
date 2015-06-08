@@ -30,6 +30,18 @@
           </div>
           <span class="tip setting-help">{% trans "Slideshare provides an embed code for presentations. In the Slideshare presentation click on the 'Embed this presentation' icon and copy the embed code into this field." %}</span>
         </li>
+        <li class="field comp-setting-entry is-set">
+          <div class="wrapper-comp-setting">
+            <label class="label setting-label" for="edit_embed_width">{% trans "Width" %}</label>
+            <input type="number" class="input setting-input edit-embed-width" id="edit_embed_width" value="{{ self.embed_width }}" />
+          </div>
+        </li>
+        <li class="field comp-setting-entry is-set">
+          <div class="wrapper-comp-setting">
+            <label class="label setting-label" for="edit_embed_height">{% trans "Height" %}</label>
+            <input type="number" class="input setting-input edit-embed-height" id="edit_embed_height" value="{{ self.embed_height }}" />
+          </div>
+        </li>
         <li class="field comp-setting-entry is-set covered" id="alt_text_item">
           <div class="wrapper-comp-setting">
             <label class="label setting-label" for="edit_alt_text">{% trans "Alternative text" %}</label>

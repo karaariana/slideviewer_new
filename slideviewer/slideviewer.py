@@ -6,9 +6,10 @@
 import logging
 import textwrap
 import requests
+import re
 
 from xblock.core import XBlock
-from xblock.fields import Scope, String
+from xblock.fields import Scope, String, Integer
 from xblock.fragment import Fragment
 
 from xblockutils.publish_event import PublishEventMixin
@@ -23,7 +24,7 @@ RESOURCE_LOADER = ResourceLoader(__name__)
 #    'start=true&loop=true&delayms=10000'
 #)
 DEFAULT_DOCUMENT_URL = (
-    'https://www.slideshare.net/slideshow/embed_code/key/riK0ZKTSRpJtpA'
+    '//www.slideshare.net/slideshow/embed_code/key/riK0ZKTSRpJtpA'
 )
 DEFAULT_EMBED_CODE = textwrap.dedent("""
     <iframe
@@ -49,7 +50,7 @@ class SlideviewerXBlock(XBlock, PublishEventMixin):  # pylint: disable=too-many-
         display_name="Display Name",
         help="This name appears in the horizontal navigation at the top of the page.",
         scope=Scope.settings,
-        default="Google Document"
+        default="Slideshare"
     )
     embed_code = String(
         display_name="Embed Code",
@@ -60,6 +61,18 @@ class SlideviewerXBlock(XBlock, PublishEventMixin):  # pylint: disable=too-many-
         ),
         scope=Scope.settings,
         default=DEFAULT_EMBED_CODE
+    )
+    embed_width = Integer(
+        display_name="Embed Width",
+        help=("Presentation Width"),
+        scope=Scope.settings,
+        default=960
+    )
+    embed_height = Integer(
+        display_name="Embed Height",
+        help=("Presentation Height"),
+        scope=Scope.settings,
+        default=569
     )
     alt_text = String(
         display_name="Alternative Text",
@@ -75,7 +88,8 @@ class SlideviewerXBlock(XBlock, PublishEventMixin):  # pylint: disable=too-many-
         """
         fragment = Fragment()
 
-        fragment.add_content(RESOURCE_LOADER.render_template(DOCUMENT_TEMPLATE, {"self": self}))
+        matches = re.search('src="([^"]+)"', self.embed_code)
+        fragment.add_content(RESOURCE_LOADER.render_template(DOCUMENT_TEMPLATE, {"self": self, 'iframe_link': matches.group(1)}))
         fragment.add_css(RESOURCE_LOADER.load_unicode('public/css/google_docs.css'))
         fragment.add_javascript(RESOURCE_LOADER.load_unicode('public/js/google_docs.js'))
 
@@ -119,6 +133,10 @@ class SlideviewerXBlock(XBlock, PublishEventMixin):  # pylint: disable=too-many-
             self.embed_code = submissions['embed_code']
         if 'alt_text' in submissions:
             self.alt_text = submissions['alt_text']
+        if 'embed_width' in submissions:
+            self.embed_width = submissions['embed_width']
+        if 'embed_height' in submissions:
+            self.embed_height = submissions['embed_height']
 
         return {
             'result': 'success',

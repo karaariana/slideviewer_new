@@ -1,4 +1,12 @@
 <div class="google-docs-xblock-wrapper" data-display-name="{{self.display_name}}" data-alt-text="{{self.alt_text}}">
     <input type="hidden" class="load_event_complete">
-    {{ self.embed_code|safe }}
+    <iframe
+        src="https://{{ iframe_link|safe }}"
+        frameborder="0"
+        width="{{ self.embed_width|safe }}"
+        height="{{ self.embed_height|safe }}"
+        allowfullscreen="true"
+        mozallowfullscreen="true"
+        webkitallowfullscreen="true">
+    </iframe>
 </div>

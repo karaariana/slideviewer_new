@@ -3,6 +3,8 @@ function GoogleDocumentEditBlock(runtime, element) {
     var save_button = $('.save-button', element);
     var validation_alert = $('.validation_alert', element);
     var embed_code_textbox = $('#edit_embed_code', element);
+    var embed_width_textbox = $('#edit_embed_width', element);
+    var embed_height_textbox = $('#edit_embed_height', element);
     var xblock_inputs_wrapper = $('.xblock-inputs', element);
     var edit_display_name_input = $('#edit_display_name', element);
     var error_message_div = $('.xblock-editor-error-message', element);
@@ -45,6 +47,8 @@ function GoogleDocumentEditBlock(runtime, element) {
         var data = {
             'display_name': edit_display_name_input.val(),
             'embed_code': embed_code_textbox.val(),
+            'embed_width': embed_width_textbox.val(),
+            'embed_height': embed_height_textbox.val(),
             'alt_text': edit_alt_text_input.val(),
         };
 
@@ -76,7 +80,7 @@ function GoogleDocumentEditBlock(runtime, element) {
         $.ajax({
             type: "POST",
             url: runtime.handlerUrl(element, 'check_url'),
-            data: JSON.stringify({url: google_doc.attr("src")}),
+            data: JSON.stringify({url: 'https:'+google_doc.attr("src")}),
             success: function(result) {
                 if (result.status_code >= 400){
                     validation_alert.removeClass('covered');
