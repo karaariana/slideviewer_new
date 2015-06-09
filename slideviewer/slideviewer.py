@@ -24,7 +24,7 @@ RESOURCE_LOADER = ResourceLoader(__name__)
 #    'start=true&loop=true&delayms=10000'
 #)
 DEFAULT_DOCUMENT_URL = (
-    '//www.slideshare.net/slideshow/embed_code/key/riK0ZKTSRpJtpA'
+    '//www.slideshare.net/slideshow/embed_code/key/vEXgh59LjFJHQV'
 )
 DEFAULT_EMBED_CODE = textwrap.dedent("""
     <iframe
